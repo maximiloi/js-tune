@@ -5,6 +5,7 @@ export const radioPlayerInit = () => {
   const radioNavigation = document.querySelector('.radio-navigation'); // находим блок со списком станций
   const radioItem = document.querySelectorAll('.radio-item'); // находим список станций
   const radioStop = document.querySelector('.radio-stop'); // находим блок управления потоком
+  const radioVolume = document.querySelector('.radio-volume'); // находим инпут для регулирования громкости
 
   const audio = new Audio(); // новый объект
   audio.type = 'audio/aac'; // устанавливаем тип для для получения аудио потока
@@ -53,4 +54,10 @@ export const radioPlayerInit = () => {
     }
     togglePlayIcon();// устанавливаем картинку
   });
+
+  radioVolume.addEventListener('input', () => { // функция регулирования громкости
+    audio.volume = radioVolume.value / 100;
+  });
+
+  radioVolume.value = audio.volume * 100; // устанавливает начальную громкость
 }
